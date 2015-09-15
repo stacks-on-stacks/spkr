@@ -8,7 +8,7 @@ angular.module('spkr.feedback-form', ['ngRoute'])
     $scope.expiration,
     $scope.today,
     $scope.user,
-
+    // another reference
     $scope.presentation= {
       // date: 'guest',
       // name: 'guest',
