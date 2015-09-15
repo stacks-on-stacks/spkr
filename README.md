@@ -82,6 +82,8 @@ View the project roadmap [here](https://github.com/glorypod/spkr/issues)
 
 -At times, the landing page image does not properly load and user only sees a white background
   --Possibly related to index/backgroundController file test
+-The deployed heroku version works, but only works on chrome
+  --Maybe because of lack of Angular.js support? Unknown actual cause.
 
 ## Avenues to explore
 - The server should make sure that the request process is authorized before adding a presentation
