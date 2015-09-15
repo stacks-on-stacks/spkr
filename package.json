@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bower": "latest",
     "browser-sync": "^1.5.7",
     "clone-stats": "0.0.1",
     "expect.js": "^0.3.1",
