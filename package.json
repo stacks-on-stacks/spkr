@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "latest"
+  },
   "scripts": {
     "test": "mocha specs/server",
     "postinstall": "./node_modules/bower/bin/bower install"
