@@ -7,7 +7,7 @@
     "node": "4.0.0"
   },
   "scripts": {
-    "test": "mocha specs/server",
+    "test": "mocha specs/server"
   },
   "author": "",
   "license": "ISC",
