@@ -33,6 +33,7 @@ module.exports = {
 
         var newFeedback = {
           _presentation: presentationId,
+          // another place where criteria lives
           scores: [
             req.body.organization,
             req.body.clarity,

@@ -1,3 +1,5 @@
+// criteria is not hardcoded here!  
+
 angular.module('spkr.services', [])
 
 .factory('Auth', function ($http, $rootScope, $location, $window) {
