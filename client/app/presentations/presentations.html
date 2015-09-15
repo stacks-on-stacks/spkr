@@ -29,12 +29,28 @@
 					<input name="date" id="date" type="date"  ng-model="presentation.date"/>
 				</div>
 				<div class="form-group">
-					<label for="date">Expiration: </label>
+					<label for="expiration">Expiration: </label>
 					<input name="expiration" id="expiration" type="date"  ng-model="presentation.expiration"/>
+				</div>
+			<div class="form-group">
+					<p>Would you like to add your own criteria or use our default set?</p>
+					<p><input type="checkbox" ng-model="customizeChecked" ng-init="customizeChecked=false"> Customize</p>
+					<p ng-if="customizeChecked">Please enter in your criteria, seperated by comma<BR/>
+					<input class="text" ng-model="customCriteria.list"></p>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create Form"/>
 			</form>
 		</div>
+
+<!-- <ul>
+  <li ng-repeat="quantity in quantityMachines">
+    <input type="radio" id="quantityMachines{{$index}}" name="quantityMachines" value="{{quantity.snippet}}" ng-model="howMany" ng-click="option.selected=quantity.snippet"/>
+    <label for="quantityMachines{{$index}}">{{quantity.snippet}}</label>
+    <input type="text" ng-model="extraInfo" ng-if="quantity.extraField" ng-show="option.selected === howMany" />
+  </li>
+</ul> -->
+
+
 
 		<div class="presentation-table col-md-9 col-sm-12">
 			<table class="table table-striped table-responsive">

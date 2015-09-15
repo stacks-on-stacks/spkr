@@ -165,6 +165,12 @@ h1 {
   padding: 1%;
 }
 
+.form-group input[type=checkbox] {
+  display:inline;
+  width:10%;
+  float:left;
+}
+
 /********** D3 STYLES **********/
 rect:hover {
   opacity:.75
