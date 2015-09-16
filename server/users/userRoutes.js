@@ -7,5 +7,9 @@ module.exports = function (app) {
   app.post('/signup', userController.signup);
   app.get('/signedin', userController.checkAuth)
   app.get('/:id', userController.serveData);
+  app.get('/auth/facebook', passport.authenticate('config/passport.js'))
+  app.get('/auth/facebook/callback', 
+  	passport.authenticate('facebook', {successRedirect: '/app/homepage/homepage.html', 
+  										failureRedirect: '/login' }));
   
 };

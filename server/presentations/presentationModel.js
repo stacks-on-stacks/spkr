@@ -23,6 +23,7 @@ var PresentationSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
+
   //the feedbacks array will be an array of integers;
   //criteria have been separated to eliminate repetition
   //ie: {organization:100, volume: 100, ...}

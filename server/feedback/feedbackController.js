@@ -43,7 +43,8 @@ module.exports = {
             req.body.connect,
             req.body.question,
             req.body.overall
-          ]
+          ],
+          comments: req.body.comments
         }
 
         create(newFeedback)

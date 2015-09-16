@@ -87,6 +87,12 @@
               <output id="overall">50</output>
             </div>
           </div>
+           <div class="col-xs-8">
+            <label for="comments">Please add further comments here</label>
+            <div class="range range-success">
+              <input type="textarea" ng-model="presentation.comments">
+            </div>
+          </div>
           <div class="col-xs-8">
             <button id="feedbackButton" ng-hide="loggedIn || expiration < today" class="btn btn-primary">Submit Feedback</button>
           </div>

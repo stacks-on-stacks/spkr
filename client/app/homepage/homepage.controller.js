@@ -9,9 +9,12 @@ angular.module('spkr.homepage', [])
       } 
     }, true);
     
+
+
     //get all the user's data
     Auth.getAllData()
     .then(function(data){
+      console.log(data);
       //the first element of the array conatains the username, 
       //the remaining elements are presentations
       $scope.user = data[0].username;
@@ -20,20 +23,29 @@ angular.module('spkr.homepage', [])
         var criteria = data[1].criteria;
         //create an array of objects for each presentation which includes the date, title, and average score for each criteria
         var scoresData = [];
+        var presentationComments =[];
         for (var i = 1; i < data.length; i++){
           if (data[i].feedbacks.length > 0) { //only add the presentations with feedbacks
             var sums = [];
             for (var j = 0; j < criteria.length; j++){
               sums.push(0);
             }
+            var feedbacksComments = [];
+
             data[i].feedbacks.forEach(function(feedback){
+
               feedback.scores.forEach(function(score,i){
                 sums[i] += parseInt(score);
               });
+              if(feedback.comments) {
+                feedbacksComments.push(feedback.comments);
+              }
             });
+            presentationComments.push({date: data[i].date.slice(0,10), title: data[i].title, comments: feedbacksComments});
             var avgs = sums.map(function(sum){return Math.round(sum/data[i].__v)});
             scoresData.push({date: data[i].date.slice(0,10), title: data[i].title, scores: avgs});
           }
+
         }
         //sort the scoresData by date
         scoresData.sort(function(a, b) {

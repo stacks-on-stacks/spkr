@@ -2,7 +2,7 @@ var morgan      = require('morgan'), // used for logging incoming request
     bodyParser  = require('body-parser'),
     helpers     = require('./helpers.js'); // our custom middleware
     feedbackController = require('../feedback/feedbackController.js');
-
+    passport = require('passport');
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
@@ -14,6 +14,8 @@ module.exports = function (app, express) {
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
+  app.use(passport.initialize());
+  app.use(passport.session()); 
 
 
   app.use('/api/users', userRouter); // use user router for all user request

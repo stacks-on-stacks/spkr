@@ -20,13 +20,15 @@ angular.module('spkr.feedback-form', ['ngRoute'])
       visualAids: 50,
       connect: 50,
       question: 50,
-      overall: 50
+      overall: 50,
+      comments: ''
     },
 
     
   // add in submitFeedback function to be able to call it on feedbackForm.html for ng-click Submit
     $scope.submitFeedback = function (presentation) {
       presentation.presId = presId;
+      console.log(presentation.comments);
       FeedbackService.submitFeedback(presentation) // inputs may be changed
         .then (function (data) {
           $scope.feedbackSuccess = data.data
