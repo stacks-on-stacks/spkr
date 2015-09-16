@@ -10,6 +10,10 @@ var FeedbackSchema = new mongoose.Schema({
   scores: {
     type: Array,
     required: true,
+  },
+  comments: {
+  	type: String,
+  	required: false,
   }
 
 });
