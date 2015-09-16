@@ -17,8 +17,13 @@ angular.module('spkr.presentations', [])
   ];
   
   $scope.addNewCriterion = function() {
-    var newCriterion = {};
+    var newCriterion = {}
+    newCriterion.name = $scope.newHeader;
+    newCriterion.prompt = $scope.newPrompt;
+    console.log(newCriterion);
     $scope.criteria.push(newCriterion);
+    $scope.confirmAdd = 'Successfully Added'
+    console.log(JSON.stringify($scope.criteria));
   };
     
   $scope.removeCriterion = function(criterionIndex) {
