@@ -17,10 +17,10 @@ angular.module('spkr.presentations', [])
   ];
   
   $scope.addNewCriterion = function() {
+    console.log('scope.newHeader', $scope.newHeader);
     var newCriterion = {}
     newCriterion.name = $scope.newHeader;
     newCriterion.prompt = $scope.newPrompt;
-    console.log(newCriterion);
     $scope.criteria.push(newCriterion);
     $scope.confirmAdd = 'Successfully Added'
     console.log(JSON.stringify($scope.criteria));
