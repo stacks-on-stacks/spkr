@@ -35,7 +35,8 @@ module.exports = {
             title: title, 
             date: date,
             expiration: expiration,
-            criteria: ['organization','clarity','volume','posture','preparation','visual aids','connection','questions','overall',]
+            criteria: ['organization','clarity','volume','posture','preparation','visual aids','connection','questions','overall']
+
             };
 
         create(newPresentation)
