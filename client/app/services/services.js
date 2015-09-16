@@ -297,6 +297,9 @@ angular.module('spkr.services', [])
   }
 
   var presentationGraph = function(criteria, distData) {
+
+    $('svg').remove();
+    $('#distChart').empty();
     
     //distribution functions for transforming the data
     function getPoints(_,i){ return _.map(function(d,j){ return {x:j, y:d[i]};}); }
