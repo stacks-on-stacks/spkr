@@ -15,7 +15,6 @@ angular.module('spkr.homepage', [])
       //the first element of the array conatains the username, 
       //the remaining elements are presentations
       $scope.user = data[0].username;
-      console.log(data)
       if (data.length > 1) { //if the user has any presentations
         //get the criteria list from the first presentation (since they are all the same)
         var criteria = data[1].criteria;

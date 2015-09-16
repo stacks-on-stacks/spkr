@@ -58,6 +58,11 @@ angular.module('spkr', [
       controller: 'PrevPresController'
     })
 
+    .when('/history', {
+      templateUrl: 'app/previous-pres/previousPres.html',
+      controller: 'PrevPresController'
+    })
+
     .when('/data-profile', {
       templateUrl: 'app/homepage/homepage.html',
       controller: 'HomepageController'
