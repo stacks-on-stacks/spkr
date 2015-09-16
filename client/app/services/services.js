@@ -112,7 +112,7 @@ angular.module('spkr.services', [])
 
 .factory('Vis', function ($http, $location, $window) {
 
-  var homepageGraph = function(criteria, scoresData) {
+  var homepageGraph = function(criteria, scoresData, presentationsData) {
     
     var dateColor = 'steelblue';
     var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon"];
@@ -170,7 +170,13 @@ angular.module('spkr.services', [])
       //utility function to be called on mouseover
       function mouseover(d){ 
         //filter for selected criteria and update the skill chart
+        $('#comments').children().remove()
         SC.update(scoresData.filter(function(s){return s.date === d[0];})[0].scores.map(function(s,i){return [criteria[i],s];}));
+
+        var commentsArr = presentationsData.filter(function(s){return s.date === d[0];})[0].feedbackComments;
+        for (var i = 0; i < commentsArr.length; i++){
+          $('#comments').append('<div id=singleComment> Comment ' + (i+1) + ': ' + commentsArr[i] + '</div>');
+        }
         //update title
         $('#skill').text('scores by criteria for "' + d[2] + '"');
       }
