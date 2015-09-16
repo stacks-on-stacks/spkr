@@ -550,3 +550,6 @@ input:-moz-placeholder {
       from(#a4b0cb),
       to(#b9c5dd));
 }
+.colorComment{
+  list-style-type: none;
+}
