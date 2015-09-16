@@ -28,7 +28,7 @@ angular.module('spkr.feedback-form', ['ngRoute'])
   // add in submitFeedback function to be able to call it on feedbackForm.html for ng-click Submit
     $scope.submitFeedback = function (presentation) {
       presentation.presId = presId;
-      console.log(presentation)
+      console.log('presentation', presentation)
       FeedbackService.submitFeedback(presentation) // inputs may be changed
         .then (function (data) {
           console.log(data)
