@@ -4,11 +4,12 @@ angular.module('spkr.presentations', [])
     //takes a raw string, seperates them by commas, and chucks them in an array of criteria. 
     var makeCriteria = function(commaDelimitedList, isChecked) {
       var criteria = ['organization', 'clarity', 'volume', 'posture',
-        'preparation', 'visual aids', 'connection', 'questions', 'overall'];
+        'preparation', 'visual aids', 'connection', 'questions',
+        'overall'];
       //If the user has defined custom criteria, parse that into an array of criteria. 
       if (commaDelimitedList !== '' && isChecked) {
         criteria = [];
-        criteria = commaDelimitedList.split(',')
+        criteria = commaDelimitedList.split(',');
         for (var i = 0; i < criteria.length; i++)
           while (criteria[i].indexOf(' ') === 0) {
             criteria[i] = criteria[i].slice(1);
@@ -35,6 +36,7 @@ angular.module('spkr.presentations', [])
 
       console.log('final', makeCriteria(presentation.customCriteriaList,
         $scope.customizeChecked));
+      // console.log('presentation', presentation);
       Pres.createPresentation(presentation).then(function(data, err) {
         if (err) console.log(err);
         $scope.feedbackUrl = $scope.root + "/feedback-form/" + data.newPresentation
