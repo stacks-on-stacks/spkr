@@ -22,14 +22,28 @@
         </div>
         <div class="form-group">
           <label for="expiration">Expiration: </label>
-          <input name="expiration" id="expiration" type="date"  ng-model="presentation.expiration"/>
+          <input name="expiration" id="expiration" type="date" ng-model="presentation.expiration"/>
         </div>
-      <div class="form-group">
+        <div class="form-group">
           <p>Would you like to add your own criteria or use our default set?</p>
           <p><input type="checkbox" ng-model="customizeChecked" ng-init="customizeChecked=false"> Customize</p>
-          <p ng-if="customizeChecked">Please enter in your criteria, seperated by comma<BR/>
-          <input class="text" ng-model="presentation.customCriteriaList"></p>
         </div>
+        <div ng-if="customizeChecked">
+        Current Criteria:
+         <div ng-repeat="criterion in criteria">
+          <H4>{{criterion.name}}</H4>
+          <p>{{criterion.prompt}}</p>
+
+         <button class="remove" ng-click="removeCriterion(criteria.indexOf(criterion))">-</button>
+          </div>
+        </div>
+
+         <button class="addfields" ng-click="addNewCriterion()">Add Criterion</button>
+       
+         <div id="criterionDisplay">
+            {{ criterion }}
+         </div>
+
         <input type="submit" class="btn btn-primary" value="Create Form"/>
       </form>
     </div>

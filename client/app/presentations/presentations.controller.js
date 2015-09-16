@@ -2,21 +2,31 @@ angular.module('spkr.presentations', [])
   .controller('PresentationsController', function($scope, $window, $location,
     Auth, Pres) {
     //takes a raw string, seperates them by commas, and chucks them in an array of criteria. 
-    var makeCriteria = function(commaDelimitedList, isChecked) {
-      var criteria = ['organization', 'clarity', 'volume', 'posture',
-        'preparation', 'visual aids', 'connection', 'questions',
-        'overall'];
-      //If the user has defined custom criteria, parse that into an array of criteria. 
-      if (commaDelimitedList !== '' && isChecked) {
-        criteria = [];
-        criteria = commaDelimitedList.split(',');
-        for (var i = 0; i < criteria.length; i++)
-          while (criteria[i].indexOf(' ') === 0) {
-            criteria[i] = criteria[i].slice(1);
-          }
-      }
-      return criteria;
-    };
+
+
+  $scope.criteria = [
+    {name:'organization', prompt: 'Was the presentation organized well?'},
+    {name:'clarity', prompt: 'Was the message clear?'},
+    {name:'volume', prompt: 'Was the speaker loud enough?'},
+    {name:'posture', prompt: 'Did the speaker have appropriate posture?'},
+    {name:'preparation', prompt: 'Did the speaker appear well prepared?'},
+    {name:'visual aids', prompt: 'Were the visual aids helpful?'},
+    {name:'connection', prompt: 'Did the speaker connect with the audience?'},
+    {name:'questions', prompt: 'Did the speaker answer questions appropriately?'},
+    {name:'overall', prompt: 'How would you rate the overall presentation?'}
+  ];
+  
+  $scope.addNewCriterion = function() {
+    var newCriterion = {};
+    $scope.criteria.push(newCriterion);
+  };
+    
+  $scope.removeCriterion = function(criterionIndex) {
+    console.log('$scope.criteria before', $scope.criteria);
+    $scope.criteria.splice(criterionIndex, 1);
+    console.log('$scope.criteria after', $scope.criteria);
+  };
+
 
     $scope.root = window.location.href.slice(0, window.location.href.lastIndexOf(
       '/'));
@@ -34,9 +44,9 @@ angular.module('spkr.presentations', [])
 
     $scope.submit = function(presentation) {
 
-      console.log('final', makeCriteria(presentation.customCriteriaList,
-        $scope.customizeChecked));
+      //presentation.customCriteria = makeCriteria(presentation.customCriteriaList,$scope.customizeChecked);
       // console.log('presentation', presentation);
+      console.log('submit');
       Pres.createPresentation(presentation).then(function(data, err) {
         if (err) console.log(err);
         $scope.feedbackUrl = $scope.root + "/feedback-form/" + data.newPresentation
