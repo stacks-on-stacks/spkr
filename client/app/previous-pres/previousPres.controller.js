@@ -39,9 +39,12 @@ angular.module('spkr.previous-pres', ['ngRoute'])
                   distData[score][i]++;
                 });
               });
+            } else {
+              criteria = [];
+              distData = [];
+            }
               //call the presentationGraph factory function (this is where d3 happens)
               Vis.presentationGraph(criteria, distData);
-            }
           })
           .catch(function(error){
             $location.path('/data-profile')
