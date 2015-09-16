@@ -1,0 +1,117 @@
+<<<<<<< HEAD
+  <div class="container presentations" ng-controller="PresentationsController">
+    <h1>Presentations</h1>
+    <div class="row presentations-inner-wrapper">
+      <div class="col-md-12">
+        <div class="new-presentation-url">
+          <div class="alert alert-success" ng-if="feedbackUrl" role="alert">
+            Your unique url is: <a href="{{feedbackUrl}}">{{feedbackUrl}}</a>
+              </div>
+=======
+<div class="container presentations" ng-controller="PresentationsController">
+  <h1>Presentations</h1>
+  <div class="row presentations-inner-wrapper">
+    <div class="col-md-12">
+      <div class="new-presentation-url">
+        <div ng-if="feedbackUrl" class="alert alert-success" role="alert">
+          Your unique url is: <a href= {{feedbackUrl}}> {{feedbackUrl}}</a>
+        </div>
+>>>>>>> fix console error in html file for presentations
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">
+      <form id="new-presentation" ng-submit="submit(presentation)" novalidate>
+        <div class="form-group">
+          <label for="title">Presentation Title: </label>
+          <input id="title" name="title" type="test" ng-model="presentation.title"/>
+        </div>
+        <div class="form-group">
+          <label for="date">Date: </label>
+          <input name="date" id="date" type="date"  ng-model="presentation.date"/>
+        </div>
+        <div class="form-group">
+          <label for="expiration">Expiration: </label>
+          <input name="expiration" id="expiration" type="date"  ng-model="presentation.expiration"/>
+        </div>
+      <div class="form-group">
+          <p>Would you like to add your own criteria or use our default set?</p>
+          <p><input type="checkbox" ng-model="customizeChecked" ng-init="customizeChecked=false"> Customize</p>
+          <p ng-if="customizeChecked">Please enter in your criteria, seperated by comma<BR/>
+          <input class="text" ng-model="presentation.customCriteriaList"></p>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create Form"/>
+      </form>
+    </div>
+
+<<<<<<< HEAD
+      <div class="presentation-table col-md-9 col-sm-12">
+        <table class="table table-striped table-responsive">
+          <thead>
+            <tr>
+              <th>Title</th>
+
+              <th>Date</th>
+
+              <th>Feedback</th>
+
+              <th>Form URL</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="pres in presentations | orderBy:'-date'">
+              <td>
+                <a href=
+                '{{"/#/presentations/history/"+%20pres._id}}'>{{pres.title}}</a>
+              </td>
+
+              <td>
+                <a href=
+                '{{"/#/presentations/history/"+%20pres._id}}'>{{pres.date |
+                date: "mediumDate"}}</a>
+              </td>
+
+              <td>
+                <a href=
+                '{{"/#/presentations/history/"+%20pres._id}}'>{{pres.feedbacks.length}}</a>
+              </td>
+
+              <td>
+                <a href='{{"/#/feedback-form/"+%20pres._id}}'>{{root +
+                "/feedback-form/" + pres._id}}</a>
+              </td>
+<td><div class="fb-share-button" data-href='{{root + "/feedback-form/" + pres._id}}'data-layout="button_count"></td>
+            </tr>
+          </tbody>
+        </table>
+=======
+<!-- <ul>
+  <li ng-repeat="quantity in quantityMachines">
+    <input type="radio" id="quantityMachines{{$index}}" name="quantityMachines" value="{{quantity.snippet}}" ng-model="howMany" ng-click="option.selected=quantity.snippet"/>
+    <label for="quantityMachines{{$index}}">{{quantity.snippet}}</label>
+    <input type="text" ng-model="extraInfo" ng-if="quantity.extraField" ng-show="option.selected === howMany" />
+  </li>
+</ul> -->
+
+
+
+    <div class="presentation-table col-md-9 col-sm-12">
+      <table class="table table-striped table-responsive">
+        <thead>
+          <th>Title</th><th>Date</th><th>Feedback</th><th>Form URL</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="pres in presentations | orderBy:'-date'">
+          <td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.title}}</a></td>
+          <td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.date | date: "mediumDate"}}</a></td>
+          <td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.feedbacks.length}}</a></td>
+          <td><a href='{{"/#/feedback-form/"+ pres._id}}'>{{root + "/feedback-form/" + pres._id}}</a></td>
+        </tr>
+        </tbody>
+      </table>
+>>>>>>> fix console error in html file for presentations
+    </div>
+  </div>
+</div>
