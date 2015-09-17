@@ -21,7 +21,14 @@ module.exports = {
         _presenter = mongoose.Types.ObjectId(req.body.userid),
         findUser = Q.nbind(User.findOne, User),
         create = Q.nbind(Presentation.create, Presentation),
-        criteria = req.body.customCriteria;
+        customCriteria = rec.body.customCriteria
+        criteriaHeaders = [];
+        criteriaPrompts = [];
+
+        for (var i = 0; i < customCriteria.length; i++){
+          criteriaHeaders.push(customCriteria[i].header)
+          criteriaPrompts.push(customCriteria[i].prompt)
+        }
 
     findUser({_id: _presenter})
     .then(function(presenter){
@@ -37,7 +44,8 @@ module.exports = {
             date: date,
             expiration: expiration,
             // criteria in the database is an array
-            criteria: criteria
+            criteriaHeaders: criteriaHeaders,
+            criteriaPrompts: criteriaPrompts
             };
 
         create(newPresentation)
