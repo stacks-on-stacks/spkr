@@ -20,21 +20,44 @@
     </div>
   </div>
   <div class="row">
-  	<div class="col-md-12">
-	  	<div id="distChart">
-	  	</div>
-  	</div>
+  <div class="col-md-12">
+  <div id="distChart">
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Comments:</h3>
-      <div id="comment">
-        <ul ng-repeat='comment in comments track by $index'>
-          <li class='colorComment'>
-            <h4>{{ comment }}</h4>
-          </li>
-        </ul>
+  </div>
+  </div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-md col-md-3 col-md-offset-4" data-toggle="modal" data-target="#myModal">
+    Click for Comments
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Comments</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <table class="table table-striped">
+              <tbody>
+                <tr ng-repeat='comment in comments track by $index'>
+                  <td class='colorComment'>
+                    <h4 style="text-align:left">{{ comment }}</h4>
+                  </td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
       </div>
     </div>
   </div>
+
+
 </div>
