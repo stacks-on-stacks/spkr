@@ -8,8 +8,6 @@ angular.module('spkr.homepage', [])
         $location.path('/')
       } 
     }, true);
-    
-
 
     //get all the user's data
     Auth.getAllData()

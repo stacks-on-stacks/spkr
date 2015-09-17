@@ -15,7 +15,7 @@
   // and makes sure that gets the entire row
     passport.deserializeUser(function(id, done) {
       Users.find({_id: id}).then(function(user) { done(null, user[0])}); 
-        //done(null, id);
+        done(null, id);
 });
  
 

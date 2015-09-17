@@ -22,9 +22,10 @@ module.exports = function (app, express) {
 
 
   app.get('/auth/facebook', passport.authenticate('facebook'))
-  app.get('/auth/facebook/callback', 
+  app.get('/auth/facebook/callback'), 
     passport.authenticate('facebook', {successRedirect: '/app/homepage/homepage.html', 
-                      failureRedirect: '/login' }));
+                      failureRedirect: '/login' });
+                      
 
 
   app.use('/api/users', userRouter); // use user router for all user request
