@@ -25,13 +25,13 @@ angular.module('spkr.previous-pres', ['ngRoute'])
             $scope.title = data.title;
             $scope.date  = data.date.slice(0,10);
             $scope.feedbacks = data.feedbacks.length;
-      $scope.comments = [];
+            $scope.comments = [];
             if ($scope.feedbacks > 0) { //if the presentation has any feedbacks
-        for (var i = 0; i < $scope.feedbacks; i++) {
-          if (data.feedbacks[i].comments){
-            $scope.comments.push(data.feedbacks[i].comments)
-          }
-        }              
+              for (var i = 0; i < $scope.feedbacks; i++) {
+                if (data.feedbacks[i].comments){
+                  $scope.comments.push(data.feedbacks[i].comments)
+              }
+            }              
 
           var criteria = data.criteria;
               //create an array or arrays filled with zeroes
