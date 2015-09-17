@@ -576,3 +576,11 @@ input:-moz-placeholder {
 .colorComment{
   list-style-type: none;
 }
+
+.hide {
+  display:none;
+}
+
+.show {
+  display:inline;
+}

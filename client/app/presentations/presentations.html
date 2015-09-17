@@ -29,20 +29,20 @@
               </form>
         <div class="form-group">
           <p>Would you like to customize your feedback criteria?</p>
-          <p><input type="checkbox" ng-model="customizeChecked" ng-init="customizeChecked=false"> Customize</p>
+          <p><input type="checkbox" id="customize"> Customize</p>
         </div>
-        <div class="customArea" ng-if="customizeChecked">
+        <div class="customArea hide">
         Current Criteria:
          <div class="criteriaList" ng-repeat="criterion in criteria">
           <a class="remove" ng-click="removeCriterion(criteria.indexOf(criterion))"><img src="./app/assets/remove.png"></a><H4>{{criterion.name}}</H4>
           <p>{{criterion.prompt}}</p>
          </div>
+         <h4>Add Criteria</h4>
+         <p><label>Header: </label><BR><input type="text" ng-model="newHeader"></p>
+         <p><label>Question to ask: </label><BR><input type="text" ng-model="newPrompt"></p>
+         <button class="btn btn-primary" ng-click="addNewCriterion()">Add</button>
+         <p>{{ confirmAdd }}</P>
          </div>
-         <div>Define New Criterion</div>
-         <p><label>Header: </label><input type="text" ng-model="newHeader"></p>
-         <p><label>Question to ask: </label><input type="text" ng-model="newPrompt"></p>
-         <button ng-click="addNewCriterion()">Add Criterion</button>
-         <p>{{ confirmAdd }} - {{newHeader}} - {{newPrompt}}</P>
 
          
     </div>
