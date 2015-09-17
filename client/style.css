@@ -34,9 +34,10 @@ main {
   background-color: white;
   font-weight: bold;
 }
-.navbar a:hover, navbar-brand:hover{
-  color: grey;
+.navbar a:hover, .navbar-brand:hover{
+  color: black;
   background-color: white;
+
 }
 
 /********** About **********/
