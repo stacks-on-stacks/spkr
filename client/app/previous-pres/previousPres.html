@@ -1,9 +1,14 @@
 <div class="container">
   <h1>Feedback Score Distribution</h1>
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><p><center>Select a Presentation:<select name="singleSelect" ng-options="pres.title for pres in allPresentations" ng-model="selectedOption"></select></center></p></div>
   <div class="row previous-presentation">
     <div class="col-md-4">
       <h2>Presentation Title</h2>
-      <div class="data">{{title}}</div>
+      <div class="data">
+
+        {{title}}
+      </div>
     </div>
     <div class="col-md-4">
       <h2>Date</h2>
