@@ -17,14 +17,14 @@ angular.module('spkr.homepage', [])
       $scope.user = data[0].username;
       if (data.length > 1) { //if the user has any presentations
         //get the criteria list from the first presentation (since they are all the same)
-        var criteria = data[1].criteria;
+        var criteriaHeaders = data[1].criteriaHeaders;
         //create an array of objects for each presentation which includes the date, title, and average score for each criteria
         var scoresData = [];
         var presentationsComments = [];
         for (var i = 1; i < data.length; i++){
           if (data[i].feedbacks.length > 0) { //only add the presentations with feedbacks
             var sums = [];
-            for (var j = 0; j < criteria.length; j++){
+            for (var j = 0; j < criteriaHeaders.length; j++){
               sums.push(0);
             }
             var feedbacksComments = [];
@@ -58,7 +58,7 @@ angular.module('spkr.homepage', [])
           "  Make sure to give out your <a href='/#/presentations'>feedback form URL</a> to start recieving feedback!</p>")
         } else {
           //call the homepageGraph factory function (this is where d3 happens)
-          Vis.homepageGraph(criteria, scoresData, presentationsComments);
+          Vis.homepageGraph(criteriaHeaders, scoresData, presentationsComments);
         }
       } else { //if the user doesn't have any presentations
         $("#fallbackMessage").append("<h2>Oh no!</h2><p>It looks like you haven't made any presentations yet.  <a href='/#/presentations'>Create</a> your first presentation to start recieving feedback!</p>")

@@ -28,7 +28,7 @@ module.exports = {
         criteriaPrompts = [];
 
         for (var i = 0; i < customCriteria.length; i++){
-          criteriaHeaders.push(customCriteria[i].header)
+          criteriaHeaders.push(customCriteria[i].name)
           criteriaPrompts.push(customCriteria[i].prompt)
         }
 

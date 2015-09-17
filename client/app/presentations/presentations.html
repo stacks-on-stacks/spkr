@@ -1,92 +1,123 @@
-  <div class="container presentations" ng-controller="PresentationsController">
-    <h1>Presentations</h1>
-    <div class="row presentations-inner-wrapper">
-      <div class="col-md-12">
-        <div class="new-presentation-url">
-          <div class="alert alert-success" ng-if="feedbackUrl" role="alert">
-            Your unique url is: <a href="{{feedbackUrl}}">{{feedbackUrl}}</a>
-              </div>
+<div class="container presentations" ng-controller="PresentationsController">
+  <h1>Presentations</h1>
+
+
+  <div class="row presentations-inner-wrapper">
+    <div class="col-md-12">
+      <div class="new-presentation-url">
+        <div class="alert alert-success" ng-if="feedbackUrl" role="alert">
+          Your unique url is: <a href="{{feedbackUrl}}">{{feedbackUrl}}</a>
+        </div>
       </div>
     </div>
   </div>
+
+
   <div class="row">
     <div class="col-md-3 col-sm-12">
-      <form id="new-presentation" ng-submit="submit(presentation)" novalidate>
+      <form id="new-presentation" name="new-presentation" ng-submit="submit(presentation)" novalidate="">
+      
         <div class="form-group">
-          <label for="title">Presentation Title: </label>
-          <input id="title" name="title" type="test" ng-model="presentation.title"/>
-        </div>
-        <div class="form-group">
-          <label for="date">Date: </label>
-          <input name="date" id="date" type="date"  ng-model="presentation.date"/>
-        </div>
-        <div class="form-group">
-          <label for="expiration">Expiration: </label>
-          <input name="expiration" id="expiration" type="date" ng-model="presentation.expiration"/>
+          <label for="title">Presentation Title:</label> <input id="title" name="title" ng-model="presentation.title" type="test">
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Create Form"/>
-              </form><BR />
+
         <div class="form-group">
-          <p>Would you like to customize your feedback criteria?</p>
-          <p><input type="checkbox" id="customize"> Customize</p>
+          <label for="date">Date:</label> <input id="date" name="date" ng-model="presentation.date" type="date">
         </div>
-        <div class="customArea hide">
+
+
+        <div class="form-group">
+          <label for="expiration">Expiration:</label> <input id="expiration" name="expiration" ng-model="presentation.expiration" type=
+          "date">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Create Form">
+        
+      </form>
+      <br>
+
+
+      <div class="form-group">
+        <p>Would you like to customize your feedback criteria?</p>
+
+
+        <p><input id="customize" type="checkbox"> Customize</p>
+      </div>
+
+
+      <div class="customArea hide">
         Current Criteria:
-         <div class="criteriaList" ng-repeat="criterion in criteria">
-          <a class="remove" ng-click="removeCriterion(criteria.indexOf(criterion))"><img src="./app/assets/remove.png"></a><H4>{{criterion.name}}</H4>
-          <p>{{criterion.prompt}}</p>
-         </div>
-         <h4>Add Criteria</h4>
-         <p><label>Header: </label><BR><input type="text" ng-model="newHeader"></p>
-         <p><label>Question to ask: </label><BR><input type="text" ng-model="newPrompt"></p>
-         <button class="btn btn-primary" ng-click="addNewCriterion()">Add</button>
-         <p>{{ confirmAdd }}</P>
-         </div>
 
-         
+        <div class="criteriaList" ng-repeat="criterion in criteria">
+          <a class="remove" ng-click="removeCriterion(criteria.indexOf(criterion))"><img src="./app/assets/remove.png"></a>
+
+          <h4>{{criterion.name}}</h4>
+
+
+          <p>{{criterion.prompt}}</p>
+        </div>
+
+
+        <h4>Add Criteria</h4>
+
+
+        <p><label>Header:</label><br>
+        <input ng-model="newHeader" type="text">
+        </p>
+
+
+        <p><label>Question to ask:</label><br>
+        <input ng-model="newPrompt" type="text">
+        </p>
+        <button class="btn btn-primary" ng-click="addNewCriterion()">Add</button>
+
+        <p>{{ confirmAdd }}</p>
+      </div>
     </div>
 
-      <div class="presentation-table col-md-9 col-sm-12">
-        <table class="table table-striped table-responsive">
-          <thead>
-            <tr>
-              <th>Title</th>
 
-              <th>Date</th>
+    <div class="presentation-table col-md-9 col-sm-12">
+      <table class="table table-striped table-responsive">
+        <thead>
+          <tr>
+            <th>Title</th>
 
-              <th>Feedback</th>
+            <th>Date</th>
 
-              <th>Form URL</th>
-            </tr>
-          </thead>
+            <th>Feedback</th>
 
-          <tbody>
-            <tr ng-repeat="pres in presentations | orderBy:'-date'">
-              <td>
-                <a href=
-                '{{"/#/presentations/history/"+%20pres._id}}'>{{pres.title}}</a>
-              </td>
+            <th>Form URL</th>
 
-              <td>
-                <a href=
-                '{{"/#/presentations/history/"+%20pres._id}}'>{{pres.date |
-                date: "mediumDate"}}</a>
-              </td>
+            <th>Share</th>
+          </tr>
+        </thead>
 
-              <td>
-                <a href=
-                '{{"/#/presentations/history/"+%20pres._id}}'>{{pres.feedbacks.length}}</a>
-              </td>
 
-              <td>
-                <a href='{{"/#/feedback-form/"+%20pres._id}}'>{{root +
-                "/feedback-form/" + pres._id}}</a>
-              </td>
-<td><div class="fb-share-button" data-href='{{root + "/feedback-form/" + pres._id}}'data-layout="button_count"></td>
-            </tr>
-          </tbody>
-        </table>
+        <tbody>
+          <tr ng-repeat="pres in presentations | orderBy:'-date'">
+            <td>
+              <a href='{{"/#/presentations/history/" + pres._id}}'>{{pres.title}}</a>
+            </td>
+
+            <td>
+              <a href='{{"/#/presentations/history/" + pres._id}}'>{{pres.date | date: "mediumDate"}}</a>
+            </td>
+
+            <td>
+              <a href='{{"/#/presentations/history/" + pres._id}}'>{{pres.feedbacks.length}}</a>
+            </td>
+
+            <td>
+              <a href='{{"/#/feedback-form/" + pres._id}}'>{{root + "/feedback-form/" + pres._id}}</a>
+            </td>
+
+            <td>
+              <div class="fb-share-button" data-href='{{root + "/feedback-form/" + pres._id}}' data-layout="button_count">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
