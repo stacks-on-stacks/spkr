@@ -3,6 +3,8 @@ var morgan      = require('morgan'), // used for logging incoming request
     helpers     = require('./helpers.js'); // our custom middleware
     feedbackController = require('../feedback/feedbackController.js');
     passport = require('passport');
+    facebook = require('passport-facebook');
+    facebookAuth = require('./passport.js')(passport);
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
@@ -18,9 +20,18 @@ module.exports = function (app, express) {
   app.use(passport.session()); 
 
 
+
+  app.get('/auth/facebook', passport.authenticate('facebook'))
+  app.get('/auth/facebook/callback', 
+    passport.authenticate('facebook', {successRedirect: '/app/homepage/homepage.html', 
+                      failureRedirect: '/login' }));
+
+
   app.use('/api/users', userRouter); // use user router for all user request
   app.use('/api/presentations', presentationRouter); //use presentation router
   app.use('/api/feedback', feedbackRouter);
+
+
 
   // authentication middleware used to decode token and made available on the request
   app.use(helpers.errorLogger);
@@ -30,5 +41,6 @@ module.exports = function (app, express) {
   require('../users/userRoutes.js')(userRouter);
   require('../presentations/presentationRoutes.js')(presentationRouter);
   require('../feedback/feedbackRoutes.js')(feedbackRouter);
+
   
 };

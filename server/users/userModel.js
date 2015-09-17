@@ -8,13 +8,23 @@ var mongoose = require('mongoose'),
 var UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true,
+    required: false,
     unique: true
   },
 
   password: {
     type: String,
-    required: true
+    required: false
+  },
+
+  fb_id: {
+    type: String,
+    required: false
+  },
+
+  fb_token: {
+    type: String,
+    required: false
   },
 
   //this is the way to create doc references
@@ -23,6 +33,13 @@ var UserSchema = new mongoose.Schema({
   salt: String
 });
 
+UserSchema.methods.signupFacebook =  function(username, facebookId, facebookToken) {
+      return db.users.insert({
+        'username': username,
+        'fb_id': facebookId,
+        'fb_token': facebookToken
+      });
+    };
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var defer = Q.defer();
@@ -37,8 +54,8 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
   return defer.promise;
 };
 
-UserSchema.methods.findOne = function() {
-  
+UserSchema.methods.findOne = function(id) {
+  db.users.find({'_id': id});
 }
 
 UserSchema.pre('save', function (next) {
