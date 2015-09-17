@@ -14,8 +14,10 @@
   // Checks to see what your user ID is on each page
   // and makes sure that gets the entire row
     passport.deserializeUser(function(id, done) {
-      Users.findOne({_id: id}.then(function(user) { done(null, user[0])})); 
-    });
+      Users.find({_id: id}).then(function(user) { done(null, user[0])}); 
+        //done(null, id);
+});
+ 
 
     passport.use(new FacebookStrategy({
 
@@ -36,6 +38,7 @@
 
       Users.find({'fb_id': profile.id}).then(
         function(user) {
+
           console.log('user: ', user);
         // if the user is found, then log them in
         if (user.length) {

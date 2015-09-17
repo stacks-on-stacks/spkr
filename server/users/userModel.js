@@ -5,6 +5,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     SALT_WORK_FACTOR  = 10;
 
+
+    require('../server.js');
+
+
+
+var db = mongoose.connection;
+
 var UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -33,14 +40,7 @@ var UserSchema = new mongoose.Schema({
   salt: String
 });
 
-UserSchema.methods.signupFacebook =  function(username, facebookId, facebookToken) {
-      return db.users.insert({
-        'username': username,
-        'fb_id': facebookId,
-        'fb_token': facebookToken
-      });
-    };
-
+ console.log('database', db.db)
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var defer = Q.defer();
   var savedPassword = this.password;
@@ -55,7 +55,14 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
 };
 
 UserSchema.methods.findOne = function(id) {
-  db.users.find({'_id': id});
+  db.users.find({'_id': id}, function(err, obj) {
+    users.create({
+          fb_id : profile.id,// set the users facebook id                   
+          fb_token: accessToken,// we will save the token that facebook provides to the user                    
+          username: profile.displayName
+        })
+    }
+  );
 }
 
 UserSchema.pre('save', function (next) {
@@ -86,4 +93,15 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-module.exports = mongoose.model('User', UserSchema);
+var user = module.exports = mongoose.model('User', UserSchema);
+
+
+module.exports.signupFacebook = function(username, facebookId, facebookToken) {
+var tempUser = new user;
+  return user.create({
+    'username': username,
+    'fb_id': facebookId,
+    'fb_token': facebookToken
+  });
+};
+

@@ -540,6 +540,7 @@ input:-moz-placeholder {
   position: static;
   clear: both;
 }
+
 .forms .inputs #submit:hover,  .forms .inputs #login:hover{
   background: -moz-linear-gradient(
       top,

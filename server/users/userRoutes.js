@@ -9,6 +9,6 @@ module.exports = function (app) {
   app.get('/:id', userController.serveData);  
   app.get('/auth/facebook', passport.authenticate('facebook'))
   app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', {successRedirect: '/app/homepage/homepage.html', 
+    passport.authenticate('facebook', {successRedirect: '/about', 
                       failureRedirect: '/login' }));
 };
