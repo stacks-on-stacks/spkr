@@ -14,7 +14,7 @@ var FeedbackSchema = new mongoose.Schema({
   comments: {
   	type: String,
   	required: false,
-  }
+  },
 
 });
 
