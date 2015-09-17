@@ -4,12 +4,21 @@ angular.module('spkr.previous-pres', ['ngRoute'])
     Auth.getAllData()
         .then(function(data){
           $scope.allPresentations = data.slice(1);
-          $scope.selectedOption = $scope.allPresentations[0];
-          console.log($scope.selectedOption._id);
+
+          // Let's check to see if the user got here by clicking on a presentation,
+          // and if they did, let's find the index of that in our presentation array.
+          if($routeParams.id) {
+            var index = $scope.allPresentations.map(function(x) {return x._id; }).indexOf($routeParams.id)
+          } else {
+            var index = 0;
+          }
+
+          // Default selection is either the presentation they clicked on, or the first
+          // presentation they added.
+          $scope.selectedOption = $scope.allPresentations[index];
 
 
     $scope.updateChart = function() {
-          console.log("hello");
             //get the data for selected presentation
           Pres.getData($scope.selectedOption._id)
           .then(function(data){
@@ -38,6 +47,7 @@ angular.module('spkr.previous-pres', ['ngRoute'])
             }
               //call the presentationGraph factory function (this is where d3 happens)
               Vis.presentationGraph(criteria, distData);
+              delete $routeParams.id;
           })
           .catch(function(error){
             $location.path('/data-profile')
