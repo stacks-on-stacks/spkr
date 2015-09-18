@@ -14,22 +14,17 @@ angular.module('spkr.homepage', []).controller('HomepageController', function($s
       //the first element of the array conatains the username, 
       //the remaining elements are presentations
     $scope.user = data[0].username;
-    console.log(data)
     if (data.length > 1) { //if the user has any presentations
-      //get the criteria list from the first presentation (since they are all the same)
       var criteriaHeaders = [];
       for (var i = 1; i < data.length; i++) {
         criteriaHeaders = criteriaHeaders.concat(data[i].criteriaHeaders)
       }
-      console.log('before', criteriaHeaders);
       criteriaHeaders = criteriaHeaders.filter(onlyUnique)
-      console.log('after', criteriaHeaders);
       //create an array of objects for each presentation which includes the date, title, and average score for each criteria
       var scoresData = [];
       var sums = {};
       sums.samples = {};
       for (var j = 0; j < criteriaHeaders.length; j++) {
-        console.log("criteriaHeaders[j]", criteriaHeaders[j])
         sums[criteriaHeaders[j]] = 0;
         sums.samples[criteriaHeaders[j]] = 0;
       }
@@ -40,19 +35,24 @@ angular.module('spkr.homepage', []).controller('HomepageController', function($s
           // set up a sum for each feedback
           var feedbacksComments = [];
           data[i].feedbacks.forEach(function(feedback) {
-            console.log("feedback", feedback)
               //if there's comments, add them to array
             if (feedback.comments) {
               feedbacksComments.push(feedback.comments)
             }
             for (var i = 0; i < feedback.scores.length; i++) {
               var syncIndex = criteriaHeaders.indexOf(feedback.scores[i].name);
-              console.log("criteriaHeaders.indexOf(feedback.scores[i].name);", criteriaHeaders.indexOf(feedback.scores[i].name))
 
               scoreValues[syncIndex] = (feedback.scores[i].value)
             }
+
+
+            for (var k = 0; k < criteriaHeaders.length; k++){
+              if (!scoreValues[k]){
+                scoreValues[k] = 0;
+              }
+            }
+
           });
-          console.log("sums", sums);
           presentationsComments.push({
             date: data[i].date.slice(0, 10),
             feedbackComments: feedbacksComments
@@ -79,7 +79,6 @@ angular.module('spkr.homepage', []).controller('HomepageController', function($s
           "  Make sure to give out your <a href='/#/presentations'>feedback form URL</a> to start recieving feedback!</p>")
       } else {
         //call the homepageGraph factory function (this is where d3 happens)
-        console.log("scoresData", scoresData);
         Vis.homepageGraph(criteriaHeaders, scoresData, presentationsComments);
       }
     } else { //if the user doesn't have any presentations
