@@ -8,7 +8,6 @@ body, html {
 h1 {
   color: white;
   font-family: 'Courgette', cursive;
-  text-shadow: rgba(0,0,0,0.4);
 }
 
 h1, h2, h3, h4 {
@@ -100,6 +99,10 @@ body.landing {
 .landing-heading {
   text-transform: lowercase;
 	margin-bottom: 1%;
+}
+
+.btn-lg {
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
 /*********** Data-Profile **********/
