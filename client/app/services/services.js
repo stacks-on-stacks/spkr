@@ -91,8 +91,18 @@ angular.module('spkr.services', [])
         url: 'api/presentations/',
         data: presentation
       }).then(function(res){
+        console.log(res)
         return res.data;
       })
+    };
+
+    var deletePresentation = function(presentation) {
+      console.log('delete', presentation)
+      return $http({
+        method: 'POST',
+        url: 'api/presentations/delete',
+        data: presentation
+      });
     };
 
     var getData = function(id){
@@ -106,7 +116,8 @@ angular.module('spkr.services', [])
 
     return {
       createPresentation: createPresentation,
-      getData: getData
+      getData: getData,
+      deletePresentation: deletePresentation
     };
 })
 

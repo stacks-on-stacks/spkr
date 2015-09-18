@@ -78,7 +78,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="pres in presentations | orderBy:'-date'">
-						<td><button class='btn btn-danger' ng-click='deletePresentation(pres.title)'>Delete</button></td>
+						<td><button class='btn btn-danger' ng-click='delete(pres)'>Delete</button></td>
 						<td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.title}}</a></td>
 						<td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.date | date: "mediumDate"}}</a></td>
 						<td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.feedbacks.length}}</a></td>
