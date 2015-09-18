@@ -45,7 +45,7 @@ angular.module('spkr.previous-pres', ['ngRoute'])
               //count the number of times each score was given for each criteria
               data.feedbacks.forEach(function(feedback){
                 feedback.scores.forEach(function(score,i){
-                  distData[score][i]++;
+                  distData[score.value][i]++;
                 });
               });
             } else {

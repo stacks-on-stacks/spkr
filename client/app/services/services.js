@@ -1,5 +1,3 @@
-// criteria is not hardcoded here!  
-
 angular.module('spkr.services', [])
 
 .factory('Auth', function ($http, $rootScope, $location, $window) {
@@ -117,7 +115,7 @@ angular.module('spkr.services', [])
   var homepageGraph = function(criteria, scoresData, presentationsData) {
     
     var dateColor = 'steelblue';
-    var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon"];
+    var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon","blue","black","olive", "battleship grey"];
 
     //function to handle the date bar chart
     function dateChart(data){
