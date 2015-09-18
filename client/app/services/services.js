@@ -116,7 +116,7 @@ angular.module('spkr.services', [])
     console.log("criteria, scoresData, presentationsData", criteria, scoresData, presentationsData)
     
     var dateColor = 'steelblue';
-    var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon","blue","black","olive", "battleship grey"];
+    var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon","blue","black","olive", "battleship grey", "red","green","orange","grey","purple","cyan","lightgreen","pink","maroon","blue","black","olive", "battleship grey"];
 
     //function to handle the date bar chart
     function dateChart(data){
@@ -144,6 +144,7 @@ angular.module('spkr.services', [])
       DCsvg.append("g").attr("class", "x axis")
            .attr("transform", "translate(0," + DCDim.h + ")")
            .call(d3.svg.axis().scale(x).orient("bottom"));
+
       
       // Create function for y-axis map
       var y = d3.scale.linear().range([DCDim.h, 0])
@@ -221,9 +222,9 @@ angular.module('spkr.services', [])
       $('#date').text('Total score for each presentation');
 
       var SC = {};
-      var SCDim = {t: 15, r: 0, b: 30, l: 0};
+      var SCDim = {t: 15, r: 0, b: 130, l: 0};
       SCDim.w = 1000 - SCDim.l - SCDim.r;
-      SCDim.h = 200 - SCDim.t - SCDim.b;
+      SCDim.h = 350 - SCDim.t - SCDim.b;
       
       //create svg for histogram
       var DCsvg = d3.select('#skillChart').append("svg")
@@ -238,7 +239,14 @@ angular.module('spkr.services', [])
       // Add x-axis to the histogram svg
       DCsvg.append("g").attr("class", "x axis")
            .attr("transform", "translate(0," + SCDim.h + ")")
-           .call(d3.svg.axis().scale(x).orient("bottom"));
+           .call(d3.svg.axis().scale(x).orient("bottom"))
+                     .selectAll("text")  
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", function(d) {
+               return "rotate(-65)" 
+           });
       
       // Create function for y-axis map
       var y = d3.scale.linear().range([SCDim.h, 0])
@@ -263,6 +271,7 @@ angular.module('spkr.services', [])
           .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
           .attr("y", function(d) { return y(d[1])-5; })
           .attr("text-anchor", "middle");
+
       
       //utility function to be called on mouseover
       function mouseover(d){ 
