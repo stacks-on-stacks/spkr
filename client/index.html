@@ -6,13 +6,14 @@
     <title>spkr</title>
     <link rel='shortcut icon' type='image/x-icon' href="favicon.ico" />
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body ng-class="{landing: withBackground}">
     <header  class="container-fluid" ng-controller="IndexController">
       <nav ng-if="loggedIn" class='navbar'>
         <div class="navbar-header">
-          <a href="/#/data-profile" class="navbar-brand">spkr</a>
+          <a href="/#/data-profile" class="navbar-brand">speak</a>
         </div>
         <div class="collapse navbar-collapse" collapse="isCollapsed">
           <ul class="nav navbar-nav navbar-right">
@@ -29,13 +30,6 @@
       <div ng-view>
       </div>
     </main>
-    <footer ng-hide="withBackground">
-      <div class="powered-by">
-        <div class="text">
-      powered by <a target="_blank" href="https://github.com/glorypod/">glory-pod</a>
-        </div>
-      </div>
-    </footer>
     <script src="lib/d3/d3.min.js"></script>
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
