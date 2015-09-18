@@ -22,6 +22,19 @@ module.exports = {
         findUser = Q.nbind(User.findOne, User),
         create = Q.nbind(Presentation.create, Presentation);
 
+        console.log(JSON.stringify(req.body.customCriteria));
+        var customCriteria = req.body.customCriteria;
+        criteriaHeaders = [];
+        criteriaPrompts = [];
+
+        for (var i = 0; i < customCriteria.length; i++){
+          criteriaHeaders.push(customCriteria[i].name)
+          criteriaPrompts.push(customCriteria[i].prompt)
+        }
+
+        console.log(criteriaHeaders);
+        console.log(criteriaPrompts);
+
     findUser({_id: _presenter})
     .then(function(presenter){
       if(presenter){
@@ -35,8 +48,9 @@ module.exports = {
             title: title, 
             date: date,
             expiration: expiration,
-            criteria: ['organization','clarity','volume','posture','preparation','visual aids','connection','questions','overall']
-
+            // criteria in the database is an array
+            criteriaHeaders: criteriaHeaders,
+            criteriaPrompts: criteriaPrompts
             };
 
         create(newPresentation)

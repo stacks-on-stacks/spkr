@@ -33,20 +33,11 @@ module.exports = {
 
         var newFeedback = {
           _presentation: presentationId,
-          scores: [
-            req.body.organization,
-            req.body.clarity,
-            req.body.volume,
-            req.body.posture,
-            req.body.prepared,
-            req.body.visualAids,
-            req.body.connect,
-            req.body.question,
-            req.body.overall
-          ],
+          // another place where criteria lives
+          scores: req.body.values,
           comments: req.body.comments
         }
-
+        console.log("new feedback", newFeedback)
         create(newFeedback)
         .then(function(feedback){ 
           feedbackId = feedback.id

@@ -8,7 +8,6 @@ body, html {
 h1 {
   color: white;
   font-family: 'Courgette', cursive;
-  text-shadow: rgba(0,0,0,0.4);
 }
 
 h1, h2, h3, h4 {
@@ -109,7 +108,11 @@ body.landing {
 
 .landing-heading {
   text-transform: lowercase;
-	margin-bottom: 1%;
+	margin-bottom: 0.1%;
+}
+
+.btn-lg {
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
 /*********** Data-Profile **********/
@@ -176,6 +179,29 @@ h1 {
   padding: 1%;
 }
 
+.form-group input[type=checkbox] {
+  display:inline;
+  width: 20px;  
+  float:left;
+}
+
+.remove img{
+  height:16px;
+  width:16px;
+  margin:3px;
+  float:left;
+}
+
+.customArea h4{
+  text-align:left;
+}
+.customArea .criteriaList p{
+  margin-left:22px;
+}
+.customArea .criteriaList{
+  margin-left:10px;
+}
+
 /********** D3 STYLES **********/
 rect:hover {
   opacity:.75
@@ -230,6 +256,7 @@ path {
 }
 #spkr{
   font-size: 5em;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 /********** FEEDBACK FORM ***********/
 
@@ -563,4 +590,12 @@ input:-moz-placeholder {
 }
 .colorComment{
   list-style-type: none;
+}
+
+.hide {
+  display:none;
+}
+
+.show {
+  display:inline;
 }
