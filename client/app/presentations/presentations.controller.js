@@ -54,9 +54,6 @@ angular.module('spkr.presentations', [])
 
     $scope.submit = function(presentation) {
 
-      //presentation.customCriteria = makeCriteria(presentation.customCriteriaList,$scope.customizeChecked);
-      // console.log('presentation', presentation);
-      console.log('submit');
       presentation.customCriteria = $scope.criteria;
       Pres.createPresentation(presentation).then(function(data, err) {
         if (err) console.log(err);
@@ -67,7 +64,12 @@ angular.module('spkr.presentations', [])
       });
     };
 
-    $scope.getData = function() {
+    $scope.delete = function(presentation) {
+      Pres.deletePresentation(presentation);
+      $scope.getData();
+    }
+
+    $scope.getData = function(){
       Auth.getAllData()
         .then(function(data) {
           $scope.presentations = data.slice(1);

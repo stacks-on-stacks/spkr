@@ -82,6 +82,19 @@ module.exports = {
     })
   },
 
+  deletePres: function(req, res, next){
+    var title = req.body.title;
+    var findPresentation = Q.nbind(Presentation.findOne, Presentation)
+    var remove = Q.nbind(Presentation.remove, Presentation)
+
+    findPresentation({title: title})
+    .then(function(presentation){
+      remove(presentation)
+    })
+
+    res.status(200);
+  },
+
 //retrieves all feedback data for a specific presentation
   onePres: function(req, res, next){
     var presentationId = mongoose.Types.ObjectId(req.params.id);

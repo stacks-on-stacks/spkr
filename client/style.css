@@ -3,27 +3,33 @@ body, html {
 	height: 100%;
 	width: 100%;
 	position: absolute;
-	font-family: Ubuntu Helvetica Arial sans-serif;
+}
+
+h1 {
+  color: white;
+  font-family: 'Courgette', cursive;
+  text-shadow: rgba(0,0,0,0.4);
 }
 
 h1, h2, h3, h4 {
 	text-align: center;
   color: #555;
 }
+
 header .navbar {
-  margin-top: 0.5%;
-  padding: 0.5% 1.5%;
+  background-color: #c9302c;
+  font-style: italic;
+  margin-left: -1.5%;
+  margin-right: -1.5%;
 }
 
 main {
 	min-height: 60%;
 }
+
 /********** Button and Link Styles ***********/
 .btn-link, .btn-link:hover, button.btn-danger .btn-link:hover {
   color: #DE7B59;
-}
-.navbar {
-  background-color: grey;
 }
 .navbar a, .navbar-brand {
   color: white;
@@ -33,10 +39,13 @@ main {
   color: grey;
   background-color: white;
   font-weight: bold;
+  border-radius: 8%;
+  
 }
-.navbar a:hover, navbar-brand:hover{
-  color: grey;
+.navbar a:hover, navbar-brand:hover {
+  color: #4a53b2;
   background-color: white;
+  border-radius: 8%;
 }
 
 /********** About **********/
@@ -57,34 +66,26 @@ main {
 }
 
 /********** Footer **********/
-.powered-by {
-  text-align: right;
-  padding: 3% 0;
-  width: 80%;
-  /*
-  padding-top: 3%;
-  padding-right: 5%; 
-  padding-bottom: 4%;*/
-}
+
 
 /********** Landing **********/
 
 body.landing {
-  background-image: url('app/assets/6475901681_488cd406f3_b.jpg');
+  background-image: url('app/assets/7697058976_ac4bb17710_o.jpg');
   background-size: cover;
 }
 
 #landing {
 	font-size: 2em;
 	text-align: center;
-	margin: 8% auto 0 auto;
+	margin: 4% auto 0 auto;
 }
 
 #landing h1, #signup h1, #login h1 {
   border: none;
 }
 #landing h1, .landing-heading {
-  color: #ffffff;
+  color: white;
 }
 
 #signup, #login {
