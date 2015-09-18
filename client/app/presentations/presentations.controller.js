@@ -23,6 +23,11 @@ angular.module('spkr.presentations', [])
       });
     };
 
+    $scope.delete = function(presentation) {
+      Pres.deletePresentation(presentation);
+      $scope.getData();
+    }
+
     $scope.getData = function(){
       Auth.getAllData()
         .then(function(data){
