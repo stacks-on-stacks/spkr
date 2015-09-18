@@ -8,26 +8,22 @@ angular.module('spkr.feedback-form', ['ngRoute'])
     $scope.expiration,
     $scope.today,
     $scope.user,
-
+    // another reference
     $scope.presentation= {
       // date: 'guest',
       // name: 'guest',
-      organization: 50,
-      clarity: 50,
-      volume: 50,
-      posture: 50,
-      prepared: 50,
-      visualAids: 50,
-      connect: 50,
-      question: 50,
-      overall: 50,
-      comments: ''
-    },
+      comments: '',
+      values: []
+    }
+
+
 
     
   // add in submitFeedback function to be able to call it on feedbackForm.html for ng-click Submit
     $scope.submitFeedback = function (presentation) {
+      console.log('Scope criteria ', $scope.fbCriteria);
       presentation.presId = presId;
+      presentation.values = $scope.fbCriteria;
       console.log('presentation', presentation)
       FeedbackService.submitFeedback(presentation) // inputs may be changed
         .then (function (data) {
@@ -47,6 +43,14 @@ angular.module('spkr.feedback-form', ['ngRoute'])
         $scope.date  = data.date.slice(0,10);
         $scope.today = new Date().toISOString().split('T')[0];
         $scope.expiration = data.expiration.slice(0,10);
+        $scope.fbCriteria = [];
+
+        for (var i = 0; i < data.criteriaHeaders.length; i++){
+          $scope.fbCriteria[i] = {
+            name: data.criteriaHeaders[i],
+            prompt: data.criteriaPrompts[i],
+          }
+        }
       })
       .catch(function(error){
         $location.path('/data-profile')

@@ -166,6 +166,29 @@ h1 {
   padding: 1%;
 }
 
+.form-group input[type=checkbox] {
+  display:inline;
+  width: 20px;  
+  float:left;
+}
+
+.remove img{
+  height:16px;
+  width:16px;
+  margin:3px;
+  float:left;
+}
+
+.customArea h4{
+  text-align:left;
+}
+.customArea .criteriaList p{
+  margin-left:22px;
+}
+.customArea .criteriaList{
+  margin-left:10px;
+}
+
 /********** D3 STYLES **********/
 rect:hover {
   opacity:.75
@@ -553,4 +576,12 @@ input:-moz-placeholder {
 }
 .colorComment{
   list-style-type: none;
+}
+
+.hide {
+  display:none;
+}
+
+.show {
+  display:inline;
 }

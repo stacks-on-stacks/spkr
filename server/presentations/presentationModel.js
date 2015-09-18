@@ -19,7 +19,11 @@ var PresentationSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  criteria: {
+  criteriaHeaders: {
+    type: Array,
+    required: true
+  },
+  criteriaPrompts: {
     type: Array,
     required: true
   },

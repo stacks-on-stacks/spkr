@@ -124,12 +124,14 @@ angular.module('spkr.services', [])
 .factory('Vis', function ($http, $location, $window) {
 
   var homepageGraph = function(criteria, scoresData, presentationsData) {
+    console.log("criteria, scoresData, presentationsData", criteria, scoresData, presentationsData)
     
     var dateColor = 'steelblue';
-    var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon"];
+    var skillColor = ["red","green","orange","grey","purple","cyan","lightgreen","pink","maroon","blue","black","olive", "battleship grey", "red","green","orange","grey","purple","cyan","lightgreen","pink","maroon","blue","black","olive", "battleship grey"];
 
     //function to handle the date bar chart
     function dateChart(data){
+      console.log("function dateChart(data)", data)
       
       //add title
       $('#skill').text('scores by criteria for all presentations');
@@ -153,6 +155,7 @@ angular.module('spkr.services', [])
       DCsvg.append("g").attr("class", "x axis")
            .attr("transform", "translate(0," + DCDim.h + ")")
            .call(d3.svg.axis().scale(x).orient("bottom"));
+
       
       // Create function for y-axis map
       var y = d3.scale.linear().range([DCDim.h, 0])
@@ -180,20 +183,22 @@ angular.module('spkr.services', [])
       
       //utility function to be called on mouseover
       function mouseover(d){ 
+        console.log('function mouseover(d)', d)
         //filter for selected criteria and update the skill chart
         $('#comments').children().remove()
-        SC.update(scoresData.filter(function(s){return s.date === d[0];})[0].scores.map(function(s,i){return [criteria[i],s];}));
 
+        $('#skill').text('scores by criteria for "' + d[2] + '"');
         var commentsArr = presentationsData.filter(function(s){return s.date === d[0];})[0].feedbackComments;
         for (var i = 0; i < commentsArr.length; i++){
           $('#comments').append('<div><h4> Comment ' + (i+1) + ': <h4>' + '<h5>' + commentsArr[i] + '</h5></div>');
         }
+        SC.update(scoresData.filter(function(s){return s.date === d[0];})[0].scores.map(function(s,i){return [criteria[i],s];}));
         //update title
-        $('#skill').text('scores by criteria for "' + d[2] + '"');
       }
       
       //utility function to be called on mouseout
       function mouseout(d){
+        console.log('function mouseout(d)', d)
         //reset skill chart to original   
         SC.update(dateAverage);
         //reset title
@@ -202,6 +207,7 @@ angular.module('spkr.services', [])
       
       //create function to update the date chart. This will be used by the skill chart
       DC.update = function(data, color){
+        console.log('function DC.update(data, color)', data, color)
         // update the domain of the y-axis map to reflect change in magnitured
         y.domain([0, d3.max(data, function(d) { return d[1]; })]);
         // Attach the new data to the bars
@@ -221,14 +227,15 @@ angular.module('spkr.services', [])
     
     //function to handle the skill bar chart
     function skillChart(data){
+      console.log('function skillChart(data)', data)
 
       //add title
       $('#date').text('Total score for each presentation');
 
       var SC = {};
-      var SCDim = {t: 15, r: 0, b: 30, l: 0};
+      var SCDim = {t: 15, r: 0, b: 130, l: 0};
       SCDim.w = 1000 - SCDim.l - SCDim.r;
-      SCDim.h = 200 - SCDim.t - SCDim.b;
+      SCDim.h = 350 - SCDim.t - SCDim.b;
       
       //create svg for histogram
       var DCsvg = d3.select('#skillChart').append("svg")
@@ -243,7 +250,14 @@ angular.module('spkr.services', [])
       // Add x-axis to the histogram svg
       DCsvg.append("g").attr("class", "x axis")
            .attr("transform", "translate(0," + SCDim.h + ")")
-           .call(d3.svg.axis().scale(x).orient("bottom"));
+           .call(d3.svg.axis().scale(x).orient("bottom"))
+                     .selectAll("text")  
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", function(d) {
+               return "rotate(-65)" 
+           });
       
       // Create function for y-axis map
       var y = d3.scale.linear().range([SCDim.h, 0])
@@ -268,9 +282,11 @@ angular.module('spkr.services', [])
           .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
           .attr("y", function(d) { return y(d[1])-5; })
           .attr("text-anchor", "middle");
+
       
       //utility function to be called on mouseover
       function mouseover(d){ 
+        console.log('function mouseover(d)', d)
         //filter for selected presentation and update the date chart
         DC.update(scoresData.map(function(s){return [s.date,s.scores[criteria.indexOf(d[0])],s.title];}),skillColor[criteria.indexOf(d[0])]);
         //update title
@@ -278,7 +294,8 @@ angular.module('spkr.services', [])
       }
       
       //utility function to be called on mouseout
-      function mouseout(d){   
+      function mouseout(d){  
+      console.log('function mouseout(d)', d) 
         //reset skill chart to original   
         DC.update(skillsAverage,dateColor);
         //reset title
@@ -287,6 +304,7 @@ angular.module('spkr.services', [])
       
       //create function to update the skill chart. This will be used by the date chart
       SC.update = function(data){
+              console.log('SC.update', data) // <--
         // update the domain of the y-axis map to reflect change in magnitured
         y.domain([0, d3.max(data, function(d) { return d[1]; })]);
         // Attach the new data to the bars
@@ -305,8 +323,10 @@ angular.module('spkr.services', [])
     
     //create an array of arrays with the criteria and average score for each criteria
     var dateAverage = criteria.map(function(d,i){return [d,Math.round(d3.mean(scoresData.map(function(t){return t.scores[i];})))];});    
+    console.log('dateAverage', dateAverage)
     //create an array of arrays with the date, title, and average score for each presentation
     var skillsAverage = scoresData.map(function(d){return [d.date,Math.round(d3.mean(d.scores)),d.title]});
+    console.log('skillsAverage', skillsAverage)
     //create the date chart
     var DC = dateChart(skillsAverage);
     //create the skill chart
@@ -314,6 +334,7 @@ angular.module('spkr.services', [])
   }
 
   var presentationGraph = function(criteria, distData) {
+    console.log('presentationGraph (criteria, distData)', criteria, distData)
 
     $('svg').remove();
     $('#distChart').empty();
@@ -327,7 +348,7 @@ angular.module('spkr.services', [])
 
     //create distribution graph
     function draw(){
-      var maxT = d3.max(distData.map(function(d){ return d3.sum(d); }));
+      var maxT = d3.max(distData.map(function(d){ console.log('distData-d', d); return d3.sum(d); }));
       
       function tW(d){ return x(d*(distData.length - 1)/50); }
       
