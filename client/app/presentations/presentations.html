@@ -15,29 +15,29 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-12">
-      <form id="new-presentation" name="new-presentation" ng-submit="submit(presentation)" novalidate="">
-      
-        <div class="form-group">
-          <label for="title">Presentation Title:</label> <input id="title" name="title" ng-model="presentation.title" type="test">
-        </div>
-
-
-        <div class="form-group">
-          <label for="date">Date:</label> <input id="date" name="date" ng-model="presentation.date" type="date">
-        </div>
-
-
-        <div class="form-group">
-          <label for="expiration">Expiration:</label> <input id="expiration" name="expiration" ng-model="presentation.expiration" type=
-          "date">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Create Form">
-        
-      </form>
-      <br>
-
-
-      <div class="form-group">
+     <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Presentation</button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="exampleModalLabel">New presentation</h4>
+            </div>
+            <div class="modal-body">
+              <form id="new-presentation" novalidate>
+                <div class="form-group">
+                  <label for="title">Presentation Title: </label>
+                  <input id="title" name="title" type="test" ng-model="presentation.title"/>
+                </div>
+                <div class="form-group">
+                  <label for="date">Date: </label>
+                  <input name="date" id="date" type="date"  ng-model="presentation.date"/>
+                </div>
+                <div class="form-group">
+                  <label for="date">Expiration: </label>
+                  <input name="expiration" id="expiration" type="date"  ng-model="presentation.expiration"/>
+                </div>
+                 <div class="form-group">
         <p>Would you like to customize your feedback criteria?</p>
 
 
@@ -73,6 +73,15 @@
 
         <p>{{ confirmAdd }}</p>
       </div>
+              </form>
+              <div class="modal-footer">
+                <button type="button" ng-click="submit(presentation)"class="btn btn-default" data-dismiss="modal">Create Form</button>
+                <!--            <button type="button" class="btn btn-primary">Send message</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+    
     </div>
 
 
@@ -93,31 +102,23 @@
         </thead>
 
 
+<div class="row">
+    <div class="presentation-table col-md-10 col-md-offset-1 col-sm-12">
+      <table class="table table-striped table-responsive">
+        <thead>
+          <th></th><th>Title</th><th>Date</th><th>Feedback</th><th>Form URL</th>
+        </thead>
         <tbody>
           <tr ng-repeat="pres in presentations | orderBy:'-date'">
-            <td>
-              <a href='{{"/#/presentations/history/" + pres._id}}'>{{pres.title}}</a>
-            </td>
-
-            <td>
-              <a href='{{"/#/presentations/history/" + pres._id}}'>{{pres.date | date: "mediumDate"}}</a>
-            </td>
-
-            <td>
-              <a href='{{"/#/presentations/history/" + pres._id}}'>{{pres.feedbacks.length}}</a>
-            </td>
-
-            <td>
-              <a href='{{"/#/feedback-form/" + pres._id}}'>{{root + "/feedback-form/" + pres._id}}</a>
-            </td>
-
-            <td>
-              <div class="fb-share-button" data-href='{{root + "/feedback-form/" + pres._id}}' data-layout="button_count">
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <td><button class='btn btn-danger' ng-click='delete(pres)'>Delete</button></td>
+            <td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.title}}</a></td>
+            <td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.date | date: "mediumDate"}}</a></td>
+            <td><a href='{{"/#/presentations/history/"+ pres._id}}'>{{pres.feedbacks.length}}</a></td>
+            <td><a href='{{"/#/feedback-form/"+ pres._id}}'>{{root + "/feedback-form/" + pres._id}}</a></td>
+            <td><div class="fb-share-button" data-href='{{root + "/feedback-form/" + pres._id}}'data-layout="button_count"></div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
