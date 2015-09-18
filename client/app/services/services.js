@@ -135,7 +135,7 @@ angular.module('spkr.services', [])
                     .attr("transform", "translate(" + DCDim.l + "," + DCDim.t + ")");
 
       // create function for x-axis mapping
-      var x = d3.scale.ordinal().rangeRoundBands([0, DCDim.w], 0.1, 0)
+      var x = d3.scale.ordinal().rangeRoundBands([1, DCDim.w], 0.1, 0)
                 .domain(data.map(function(d) { return d[0]; }));
 
       // Add x-axis to the histogram svg
@@ -175,7 +175,7 @@ angular.module('spkr.services', [])
 
         var commentsArr = presentationsData.filter(function(s){return s.date === d[0];})[0].feedbackComments;
         for (var i = 0; i < commentsArr.length; i++){
-          $('#comments').append('<div id=singleComment> Comment ' + (i+1) + ': ' + commentsArr[i] + '</div>');
+          $('#comments').append('<div><h4> Comment ' + (i+1) + ': <h4>' + '<h5>' + commentsArr[i] + '</h5></div>');
         }
         //update title
         $('#skill').text('scores by criteria for "' + d[2] + '"');
