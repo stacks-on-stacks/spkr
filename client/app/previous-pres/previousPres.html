@@ -1,21 +1,25 @@
 <div class="container">
-  <h1>Feedback Score Distribution</h1>
-  <div class="col-md-4"></div>
-  <div class="col-md-4"><p><center>Select a Presentation:<select name="singleSelect" ng-options="pres.title for pres in allPresentations" ng-model="selectedOption" class="form-control"></select></center></p></div>
+  <h1>Feedback Score Distribution</h1> 
+    <div class="col-md-5" id="pres_dropdown"><p>Select a Presentation:<select name="singleSelect" ng-options="pres.title for pres in allPresentations" ng-model="selectedOption" class="form-control"></select></p></div>
+     <div class="col-md-7"> <button id ="comments_btn" type="button" class="btn btn-primary btn-md col-md-3 col-md-offset-4" data-toggle="modal" data-target="#myModal">
+      Click for Comments 
+      </button>
+      </div>
+  </div>
   <div class="row previous-presentation">
     <div class="col-md-4">
-      <h2>Presentation Title</h2>
+      <h3><i>Title:</i></h3>
       <div class="data">
 
         {{title}}
       </div>
     </div>
     <div class="col-md-4">
-      <h2>Date</h2>
+      <h3><i>Date:</i></h3>
       <div class="data">{{date | date : "mediumDate" }}</div>
     </div>
     <div class="col-md-4">
-      <h2>Feedback Received</h2>
+      <h3><i>Feedback Received:</i></h3>
       <div class="data">{{feedbacks}}</div> 
     </div>
   </div>
@@ -25,10 +29,8 @@
   </div>
   </div>
   </div>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-md col-md-3 col-md-offset-4" data-toggle="modal" data-target="#myModal">
-    Click for Comments
-  </button>
+
+ 
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

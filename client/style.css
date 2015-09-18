@@ -48,6 +48,16 @@ main {
   border-radius: 8%;
 }
 
+#pres_dropdown {
+  margin-left: 10%;
+  width: 30%;
+
+}
+
+#comments_btn {
+  margin-top: 3%;
+}
+
 /********** About **********/
 
 .about {
