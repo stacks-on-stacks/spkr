@@ -28,8 +28,8 @@
           <div ng-repeat="fbCriterion in fbCriteria" class="col-xs-8">
             <label for="criteria">{{fbCriterion.name}}: {{fbCriterion.prompt}}</label>
             <div class="range range-info">
-              <input type="range" name="range" min="1" max="100" value="50" ng-change="fbCriterion.value" ng-model="fbCriterion.value">
-              <output ng-init="fbCriterion.value = 50" ng-model="fbCriterion.name" id="{{fbCriterion.name}}">{{fbCriterion.value}}</output>
+              <input type="range" name="range" min="1" max="7" value="7" ng-change="fbCriterion.value" ng-model="fbCriterion.value">
+              <output ng-init="fbCriterion.value = 7" ng-model="fbCriterion.name" id="{{fbCriterion.name}}">{{fbCriterion.value}}</output>
             </div>
           </div>
 
