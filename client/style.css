@@ -30,12 +30,19 @@ main {
 .btn-link, .btn-link:hover, button.btn-danger .btn-link:hover {
   color: #DE7B59;
 }
+
+@media (max-width: 600px) {
+  .btn {
+    size: 50%;
+  }
+}
+
 .navbar a, .navbar-brand {
   color: white;
 }
 
 .navbar a:focus, .navbar-brand:focus {
-  color: grey;
+  color: gray;
   background-color: white;
   font-weight: bold;
   border-radius: 8%;
@@ -74,14 +81,24 @@ main {
   padding-top: 5%;
 }
 
-/********** Footer **********/
-
 
 /********** Landing **********/
 
 body.landing {
-  background-image: url('app/assets/7697058976_ac4bb17710_o.jpg');
   background-size: cover;
+  background-image: url('app/assets/un_crop.jpg');
+  background-repeat: no-repeat;
+}
+
+
+@media (max-width: 1200px) {
+  #landing h1, .landing-heading {
+    font-size: 100px;
+  }
+  body.landing {
+   background-image: url('app/assets/_crop.jpg');
+   background-size: cover;
+ }
 }
 
 #landing {
