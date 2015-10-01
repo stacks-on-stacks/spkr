@@ -85,13 +85,18 @@ main {
 /********** Landing **********/
 
 body.landing {
-  background-size: cover;
   background-image: url('app/assets/un_crop.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
+@media (max-width: 500px) {
+   #landing h1, .landing-heading {
+    font-size: 60px;
+  }
+}
 
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 800px) {
   #landing h1, .landing-heading {
     font-size: 100px;
   }
