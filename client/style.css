@@ -7,7 +7,6 @@ body, html {
 
 h1 {
   color: white;
-  font-family: 'Courgette', cursive;
 }
 
 h1, h2, h3, h4 {
@@ -22,8 +21,9 @@ header .navbar {
   margin-right: -1.5%;
 }
 
-main {
+body {
 	min-height: 60%;
+  background-color: #222222;
 }
 
 /********** Button and Link Styles ***********/
@@ -92,12 +92,14 @@ body.landing {
 
 @media (max-width: 500px) {
    #landing h1, .landing-heading {
+    font-family: 'Courgette', cursive;
     font-size: 60px;
   }
 }
 
 @media (max-width: 1200px) and (min-width: 800px) {
   #landing h1, .landing-heading {
+    font-family: 'Courgette', cursive;
     font-size: 100px;
   }
   body.landing {
@@ -113,6 +115,7 @@ body.landing {
 }
 
 #landing h1, #signup h1, #login h1 {
+  font-family: 'Courgette', cursive;
   border: none;
 }
 #landing h1, .landing-heading {
@@ -140,8 +143,6 @@ body.landing {
 /*********** Data-Profile **********/
 
 h1 {
-  border-bottom: 2px solid #d6e9c6;
-  margin: 0 25%;
   padding-bottom: 1%;
 }
 
@@ -172,6 +173,10 @@ h1 {
 }
 
 /************ Presentations ***********/
+.add_pres {
+  float: right;
+}
+
 .presentations-inner-wrapper {
   margin-top: 5%;
   width: 95%;

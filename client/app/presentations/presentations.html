@@ -10,6 +10,7 @@
 	<h1>Presentations</h1>
 	<div class="row presentations-inner-wrapper">
 		<div class="col-md-12">
+		<button type="button" class="btn btn-primary add_pres" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Presentation</button>
 			<div class="new-presentation-url">
 				<div ng-if="feedbackUrl" class="alert alert-success" role="alert">
 					Your unique url is: <a href= {{feedbackUrl}}> {{feedbackUrl}}</a>
@@ -19,8 +20,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5 col-sm-12">
-
-			<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Presentation</button>
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
