@@ -7,7 +7,6 @@ body, html {
 
 h1 {
   color: white;
-  font-family: 'Courgette', cursive;
 }
 
 h1, h2, h3, h4 {
@@ -89,9 +88,11 @@ body.landing {
 
 #landing h1, #signup h1, #login h1 {
   border: none;
+   font-family: 'Courgette', cursive;
 }
 #landing h1, .landing-heading {
   color: white;
+  font-family: 'Courgette', cursive;
 }
 
 #signup, #login {
