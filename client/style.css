@@ -7,7 +7,6 @@ body, html {
 
 h1 {
   color: white;
-  font-family: 'Courgette', cursive;
 }
 
 h1, h2, h3, h4 {
@@ -17,9 +16,7 @@ h1, h2, h3, h4 {
 
 header .navbar {
   background-color: #c9302c;
-  font-style: italic;
-  margin-left: -1.5%;
-  margin-right: -1.5%;
+  border-radius: 0px;
 }
 
 main {
@@ -34,17 +31,16 @@ main {
   color: white;
 }
 
-.navbar a:focus, .navbar-brand:focus {
-  color: grey;
-  background-color: white;
-  font-weight: bold;
-  border-radius: 8%;
-  
+.activeTab {
+    background-color: #da5b58;
 }
-.navbar a:hover, navbar-brand:hover {
-  color: #4a53b2;
-  background-color: white;
-  border-radius: 8%;
+
+.nav>li>a:hover {
+  background-color: #da5b58;
+}
+
+.nav>li>a:focus {
+  background-color: transparent;
 }
 
 #pres_dropdown {
@@ -92,9 +88,11 @@ body.landing {
 
 #landing h1, #signup h1, #login h1 {
   border: none;
+   font-family: 'Courgette', cursive;
 }
 #landing h1, .landing-heading {
   color: white;
+  font-family: 'Courgette', cursive;
 }
 
 #signup, #login {
