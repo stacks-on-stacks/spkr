@@ -50,7 +50,8 @@ angular.module('spkr', [
     })
 
     .when('/presentations', {
-      templateUrl: 'app/presentations/presentations.html'
+      templateUrl: 'app/presentations/presentations.html',
+      activeTab: 'presentations'
     })
 
     .when('/presentations/history/:id', {
@@ -60,12 +61,14 @@ angular.module('spkr', [
 
     .when('/history', {
       templateUrl: 'app/previous-pres/previousPres.html',
-      controller: 'PrevPresController'
+      controller: 'PrevPresController',
+      activeTab: 'distributions'
     })
 
     .when('/data-profile', {
       templateUrl: 'app/homepage/homepage.html',
-      controller: 'HomepageController'
+      controller: 'HomepageController',
+      activeTab: 'charts'
     })
     
     .when('/logout', {
